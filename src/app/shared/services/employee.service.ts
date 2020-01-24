@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 
 const EMP = [
     {
-      'id':1,
       'name':'abce',
       'userName':'akd',
-      'email':'abc@gmail.com'
+      'emailId':'abc@gmail.com',
+      'aliases': ['abc','xyz']
     },
     {
-      'id':2,
       'name':'alksdfj',
       'userName':'akd',
-      'email':'test@gmail.com'
+      'emailId':'test@gmail.com',
+      'aliases': ['asdf','asdf']
     }
 ];
 
@@ -26,5 +26,12 @@ export class EmployeeService {
     return EMP;
   }
 
+  addEmployee(emp){
+    EMP.push(emp);
+  }
+
+  deleteEmployee(index){
+    EMP.splice(index, 1);
+  }
  
 }

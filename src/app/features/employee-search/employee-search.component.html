@@ -1,20 +1,43 @@
+{{employeeForm.value | json}}
+<form (ngSubmit)="onSubmit()" [formGroup]="employeeForm">
+  <div class="form-group">
+    <input type="text" formControlName="name" class="form-control">
+  </div>
+  <div class="form-group">
+    <input type="text" formControlName="userName" class="form-control">
+  </div>
+  <div class="form-group">
+    <input type="text" formControlName="emailId" class="form-control">
+  </div>
+  <div class="form-group" formArrayName="aliases">
+    <div *ngFor="let address of aliases.controls; let i=index">
+      <input type="text" class="form-control" [formControlName]="i">
+    </div>
+    <button class="btn btn-sm btn-secondary mt-1" (click)="addAliases()">Add aliasas</button>
+  </div>  
+
+  <button type="submit" [disabled]="!employeeForm.valid" class="btn btn-primary">Add</button>
+</form>
+
 
 <table class="table">
     <tr>
       <th>ID</th>
       <th>Full Name</th>
       <th>User Name</th>
+      <th>Aliases</th>
       <th>Email</th>
       <th>Actions</th>
     </tr>
     <tr *ngFor="let e of employess;let i=index">
-      <td>{{e.id}}</td>
+      <td>{{i+1}}</td>
       <td>{{e.name}}</td>
       <td>{{e.userName}}</td>
-      <td>{{e.email}}</td>
+      <td>{{e.aliases}}</td>
+      <td>{{e.emailId}}</td>
       <td>
-        <button (click)="edit(i)">Edit</button>
-        <button (click)="delete(i)">Delete</button>
+        <button class="btn btn-sm btn-info mr-1" (click)="edit(i)">Edit</button>
+        <button class="btn btn-sm btn-danger" (click)="delete(i)">Delete</button>
       </td>
     </tr>
   </table>
