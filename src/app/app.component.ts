@@ -1,10 +1,9 @@
 import { Component,OnInit } from '@angular/core';
-import { EmployeeService } from './services/employee.service';
+import { EmployeeService } from './shared/services/employee.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit{
   title = 'myApp';
