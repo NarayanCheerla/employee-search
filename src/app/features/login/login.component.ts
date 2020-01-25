@@ -9,11 +9,14 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(private router:Router) { }
+  user: any;
+  pass: any;
 
   ngOnInit() {
   }
 
   login(){
-    this.router.navigate(['employee']);
+    if(this.user === "admin" && this.pass==="admin")
+      this.router.navigate(['employee-search']);
   }
 }

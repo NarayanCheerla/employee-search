@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { EmployeeSearchComponent } from './features/employee-search/employee-search.component';
 import { LoginComponent } from './features/login/login.component';
 import { LogoutComponent } from './features/logout/logout.component';
+import { AddEmployeeComponent } from './features/add-employee/add-employee.component';
+import { AuthGuard } from './auth/auth.guard';
 
 
 const routes: Routes = [
@@ -11,12 +13,25 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path:'employee',
-    component: EmployeeSearchComponent
+    path: 'welcome',
+    loadChildren: () => import('./features/welcome/welcome.module').then(m => m.WelcomeModule)
+  },
+  {
+    path:'employee-search',
+    component: EmployeeSearchComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'employee-add',
+    component: AddEmployeeComponent
   },
   {
     path:'logout',
     component: LogoutComponent
+  },
+  {
+    path: '**',
+    component: LoginComponent
   }
 ];
 
