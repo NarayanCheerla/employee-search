@@ -11,11 +11,11 @@ export class AuthService {
 
   urlRedirect: string;
 
-  login(){
+  login() {
     this.isLogedIn = true;
   }
 
-  logout(){
-    return this.isLogedIn;
+  logout() {
+    this.isLogedIn = false;
   }
 }

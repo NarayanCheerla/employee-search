@@ -11,24 +11,35 @@ import { EmployeeService } from 'src/app/shared/services/employee.service';
 export class EmployeeSearchComponent implements OnInit {
 
   employess = [];
+  rows = [];
 
   constructor(private employeeService: EmployeeService) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getEmployees();
+    this.rows = Array.from({ length: 5 }, () => {
+      return { editable: false };
+    });
+
   }
 
-  getEmployees(){
+  getEmployees() {
     this.employess = this.employeeService.getEmployees();
   }
 
-  delete(i){
+  delete(i) {
     this.employeeService.deleteEmployee(i);
     this.getEmployees();
   }
 
-  edit(i){
-    alert(`editing ${i+1} row`);
+  edit(i) {
+    this.rows[i] = { editable: true };
+  }
+
+  update(i) {
+    this.rows[i] = { editable: false };
+    this.employeeService.updateEmployees(this.employess);
+    this.getEmployees();
   }
 
 }

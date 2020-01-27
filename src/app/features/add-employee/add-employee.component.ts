@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormArray, Validators } from '@angular/forms';
 import { EmployeeService } from 'src/app/shared/services/employee.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-employee',
@@ -9,14 +10,14 @@ import { EmployeeService } from 'src/app/shared/services/employee.service';
 })
 export class AddEmployeeComponent {
 
-  constructor(private employeeService: EmployeeService, private fb: FormBuilder) { }
+  constructor(private employeeService: EmployeeService, private fb: FormBuilder, private router: Router) { }
 
   employeeForm = this.fb.group({
     name: ['', Validators.required],
     userName: ['', Validators.required],
-    emailId: ['',Validators.required],
+    emailId: ['', Validators.required],
     aliases: this.fb.array([
-      this.fb.control('alias name')
+      this.fb.control('')
     ])
   });
 
@@ -24,13 +25,15 @@ export class AddEmployeeComponent {
     return this.employeeForm.get('aliases') as FormArray;
   }
 
-  addAliases(){
+  addAliases() {
     this.aliases.push(this.fb.control(''));
   }
 
-   onSubmit() {
+  onSubmit() {
     this.employeeService.addEmployee(this.employeeForm.value);
     console.log(this.employeeForm.value);
+    this.router.navigate(['/employee-search']);
   }
+
 
 }

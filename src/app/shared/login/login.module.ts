@@ -13,6 +13,6 @@ import { LoginComponent } from './login.component';
     FormsModule,
     LoginRoutingModule
   ],
-  exports:[ LoginComponent ]
+  exports: [LoginComponent]
 })
 export class LoginModule { }

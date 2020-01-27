@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 
-const EMP = [
-    {
-      'name':'abce',
-      'userName':'akd',
-      'emailId':'abc@gmail.com',
-      'aliases': ['abc','xyz']
-    },
-    {
-      'name':'alksdfj',
-      'userName':'akd',
-      'emailId':'test@gmail.com',
-      'aliases': ['asdf','asdf']
-    }
+let EMP = [
+  {
+    name: 'abce',
+    userName: 'akd',
+    emailId: 'abc@gmail.com',
+    aliases: ['abc', 'xyz']
+  },
+  {
+    name: 'alksdfj',
+    userName: 'akd',
+    emailId: 'test@gmail.com',
+    aliases: ['asdf', 'asdf']
+  }
 ];
 
 @Injectable({
@@ -22,16 +22,20 @@ export class EmployeeService {
 
   constructor() { }
 
-  getEmployees(){
+  getEmployees() {
     return EMP;
   }
 
-  addEmployee(emp){
+  addEmployee(emp) {
     EMP.push(emp);
   }
 
-  deleteEmployee(index){
+  deleteEmployee(index) {
     EMP.splice(index, 1);
   }
- 
+
+  updateEmployees(emps) {
+    EMP = emps;
+  }
+
 }

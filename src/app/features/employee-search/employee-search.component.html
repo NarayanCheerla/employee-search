@@ -3,18 +3,26 @@
       <th>ID</th>
       <th>Full Name</th>
       <th>User Name</th>
-      <th>Aliases</th>
       <th>Email</th>
       <th>Actions</th>
     </tr>
     <tr *ngFor="let e of employess;let i=index">
       <td>{{i+1}}</td>
-      <td>{{e.name}}</td>
-      <td>{{e.userName}}</td>
-      <td>{{e.aliases}}</td>
-      <td>{{e.emailId}}</td>
       <td>
-        <button class="btn btn-sm btn-info mr-1" (click)="edit(i)">Edit</button>
+        <span *ngIf="!rows[i].editable">{{e.name}}</span>
+        <span *ngIf="rows[i].editable"><input type="text" [(ngModel)]="e.name"></span>
+      </td>
+      <td>
+        <span *ngIf="!rows[i].editable">{{e.userName}}</span>
+        <span *ngIf="rows[i].editable"><input type="text" [(ngModel)]="e.userName"></span>
+      </td>
+      <td>
+        <span *ngIf="!rows[i].editable">{{e.emailId}}</span>
+        <span *ngIf="rows[i].editable"><input type="text" [(ngModel)]="e.emailId"></span>
+      </td>
+      <td>
+        <button *ngIf="!rows[i].editable" class="btn btn-sm btn-info mr-1" (click)="edit(i)">Edit</button>
+        <button *ngIf="rows[i].editable" class="btn btn-sm btn-info mr-1" (click)="update(i)">Update</button>
         <button class="btn btn-sm btn-danger" (click)="delete(i)">Delete</button>
       </td>
     </tr>

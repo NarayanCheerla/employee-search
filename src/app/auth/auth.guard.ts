@@ -9,23 +9,25 @@ import { Router } from '@angular/router';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, private router: Router) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    let url = state.url;
+    const url = state.url;
 
     return this.checkLogin(url);
   }
 
-  checkLogin(url: string){
-    if(this.authService.isLogedIn) return true;
+  checkLogin(url: string) {
+    if (this.authService.isLogedIn) {
+      return true;
+    }
 
     this.authService.urlRedirect = url;
     this.router.navigate(['/login']);
     return false;
   }
-  
+
 }
 
